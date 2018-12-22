@@ -1,0 +1,37 @@
+roles:
+  - name: SFV Fighters
+    roleID: 203914949444108290
+  - name: SF4 Fighters
+    roleID: 394521155421339659
+  - name: Street Fighter
+    roleID: 394516611425632256
+  - name: Guilty Gear Fighters
+    roleID: 289537071389999105
+  - name: Guilty Gear
+    roleID: 394519718662504448
+  - name: Dragon Ball Fighterz
+    roleID: 394250184244068362
+  - name: DBF Fighters
+    roleID: 394518288551641089
+  - name: Tekken 7 Fighters
+    roleID: 318693995347705856
+  - name: Tekken
+    roleID: 394517176461033473
+  - name: Monster Hunter
+    roleID: 412724497003708416
+  - name: Puyo Puyo Fighters
+    roleID: 418038577797136395
+  - name: Fightcade Fighters
+    roleID: 394521523395887104
+  - name: BlazBlue Fighters
+    roleID: 394520331722686464
+  - name: Marvel Fighters
+    roleID: 315824179415089152
+  - name: Marvel Vs Capcom
+    roleID: 394520042986799104
+  - name: UNIEL Fighters
+    roleID: 497077290790944798
+  - name: Soul Calibur Fighters
+    roleID: 511252170809671680
+  - name: Soul Calibur
+    roleID: 511252244507787299

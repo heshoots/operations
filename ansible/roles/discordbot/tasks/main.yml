@@ -1,0 +1,34 @@
+---
+- name: discordbot bin directory
+  file:
+    path: /opt/discordbot/bin
+    state: directory
+- name: discordbot config directory
+  file:
+    path: /etc/discordbot/
+    state: directory
+- name: pull smbfapi binary
+  get_url:
+    url: https://github.com/heshoots/discordbot/releases/download/0.0.1/discordbot
+    dest: /opt/discordbot/bin/discordbot
+    mode: 775
+    checksum: sha256:a138c3fb46fd923e61baef6d24739828dbed038745b73d025ee45760e5289fb5
+- name: move systemd unit
+  copy:
+    src: ../files/discordbot.service
+    dest: /etc/systemd/system/discordbot.service
+- name: move environmentFile
+  copy:
+    src: ../files/env
+    dest: /etc/discordbot/env
+    decrypt: yes
+- name: move config
+  copy:
+    src: ../files/config.yaml
+    dest: /etc/discordbot/config.yaml
+- name: discordbot.service started
+  service:
+    daemon_reload: yes
+    name: discordbot 
+    enabled: yes
+    state: started

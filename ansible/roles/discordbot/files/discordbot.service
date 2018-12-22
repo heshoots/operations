@@ -1,0 +1,16 @@
+[Unit]
+Description=Discordbot service
+ConditionPathExists=/opt/discordbot/bin/discordbot
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+startLimitIntervalSec=60
+WorkingDirectory=/opt/discordbot/
+EnvironmentFile=/etc/discordbot/env
+ExecStart=/opt/discordbot/bin/discordbot
+
+[Install]
+WantedBy=multi-user.target

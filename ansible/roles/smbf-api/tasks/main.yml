@@ -1,0 +1,40 @@
+---
+- name: smbfapi directory
+  file:
+    path: /opt/smbf-api/bin
+    state: directory
+- name: smbfapi directory
+  file:
+    path: /etc/smbf-api/
+    state: directory
+- name: pull smbfapi binary
+  get_url:
+    url: https://github.com/heshoots/smbfapi/releases/download/0.0.1/smbfapi
+    dest: /opt/smbf-api/bin/smbfapi
+    mode: 775
+- name: move systemd unit
+  copy:
+    src: ../files/smbfapi.service
+    dest: /etc/systemd/system/smbfapi.service
+- name: move environmentFile
+  copy:
+    src: ../files/environment
+    dest: /etc/smbf-api/env
+    decrypt: yes
+- name: smbfapi-service started
+  service:
+    daemon_reload: yes
+    name: smbfapi
+    enabled: yes
+    state: started
+- name: add brackets.superminerbattle.farm config file to nginx
+  become: yes
+  copy:
+    src: ../files/brackets.superminerbattle.farm
+    dest: /etc/nginx/sites-enabled/brackets.superminerbattle.farm
+    owner: root
+    group: root
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted

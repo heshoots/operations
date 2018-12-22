@@ -1,0 +1,16 @@
+[Unit]
+Description=SMBF API service
+ConditionPathExists=/opt/smbf-api/bin/smbfapi
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+startLimitIntervalSec=60
+WorkingDirectory=/opt/smbf-api/
+EnvironmentFile=/etc/smbf-api/env
+ExecStart=/opt/smbf-api/bin/smbfapi
+
+[Install]
+WantedBy=multi-user.target

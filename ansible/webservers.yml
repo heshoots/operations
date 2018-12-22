@@ -1,0 +1,9 @@
+---
+- hosts: tag_webserver
+  user: heshoots9999
+  become: yes
+  roles:
+    - webserver
+    - ma.xprettyjohns
+    - smbf-api
+    - discordbot

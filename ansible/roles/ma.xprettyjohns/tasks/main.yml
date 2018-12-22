@@ -1,0 +1,22 @@
+---
+- name: html directory
+  file:
+    path: /var/www/ma.xprettyjohns/html
+    state: directory
+- name: download release
+  unarchive:
+    src: https://github.com/heshoots/site/releases/download/0.0.1/maxprettyjohns.tar.gz
+    dest: /var/www/ma.xprettyjohns/html
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+- name: add ma.xprettyjohns config file to nginx
+  become: yes
+  copy:
+    src: ../files/max.prettyjohns
+    dest: /etc/nginx/sites-enabled/max.prettyjohns
+    owner: root
+    group: root
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
