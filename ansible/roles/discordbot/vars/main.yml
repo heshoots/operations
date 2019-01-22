@@ -1,0 +1,5 @@
+discordbot_conf_directory: /etc/discordbot
+discordbot_app_directory: /opt/discordbot/bin
+discordbot_checksum: sha256:f99eaaff01d0a4a777680397a3daa17821a3e69b8d8629dde9da8e566da7227c
+discordbot_release: 0.0.2
+
