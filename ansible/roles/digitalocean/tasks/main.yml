@@ -1,0 +1,23 @@
+---
+- name: make user
+  become: yes
+  user:
+    name: heshoots9999
+    groups:
+    - sudo
+    state: present
+    password: "{{ password }}"
+    update_password: always
+    shell: /bin/bash
+- name: add ssh key to authorized keys
+  authorized_key:
+    user: heshoots9999
+    state: present
+    key: "{{ lookup('file', '/home/max/.ssh/id_rsa.pub') }}"
+- name: passwordless sudo
+  become: yes
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^heshoots9999\s'
+    line: 'heshoots9999 ALL=(ALL) NOPASSWD: ALL'

@@ -1,12 +1,43 @@
 server {
-	listen 80;
-	listen [::]:80;
 
 	server_name brackets.superminerbattle.farm;
 
 	location / {
+        if ($request_method ~* "(GET|POST)") {
+          add_header "Access-Control-Allow-Origin"  *;
+        }
+
+        # Preflighted requests
+        if ($request_method = OPTIONS ) {
+          add_header "Access-Control-Allow-Origin"  *;
+          add_header "Access-Control-Allow-Methods" "GET, POST, OPTIONS, HEAD";
+          add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+          return 200;
+        }
+
         proxy_pass http://localhost:8080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
+        # Simple requests
 	}
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/brackets.superminerbattle.farm/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/brackets.superminerbattle.farm/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = brackets.superminerbattle.farm) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	listen 80;
+	listen [::]:80;
+
+	server_name brackets.superminerbattle.farm;
+    return 404; # managed by Certbot
 }

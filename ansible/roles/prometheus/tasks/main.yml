@@ -1,0 +1,68 @@
+---
+- name: create prometheus group
+  group:
+    name: prometheus
+    state: present
+- name: create prometheus user
+  user:
+    name: prometheus
+    group: prometheus
+    state: present
+- name: directory exists
+  become: yes
+  file:
+    path: /opt/prometheus
+    state: directory
+    owner: prometheus
+    recurse: yes
+- name: directory exists
+  become: yes
+  file:
+    path: /opt/prometheus/
+    state: directory
+    owner: prometheus
+    recurse: yes
+- name: download prometheus
+  become: yes
+  unarchive:
+    remote_src: yes
+    src: https://github.com/prometheus/prometheus/releases/download/v2.7.2/prometheus-2.7.2.linux-amd64.tar.gz
+    dest: /opt/prometheus/
+    mode: 0755
+    owner: prometheus
+    extra_opts: [--strip-components=1]
+- name: move systemd unit
+  become: yes
+  copy:
+    src: ../files/prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+- name: prometheus.service started
+  become: yes
+  service:
+    daemon_reload: yes
+    name: prometheus
+    enabled: yes
+    state: restarted
+  notify:
+    - restart ufw
+- name: move nginx config
+  become: yes
+  copy:
+    src: ../files/nginx-config
+    dest: /etc/nginx/conf.d/prometheus.conf
+  notify:
+    - restart nginx
+- name: Make sure we can use htpasswd module
+  apt: 
+    name: python-passlib
+    state: present
+
+- htpasswd:
+    path: /etc/nginx/.htpasswd
+    name: admin
+    password: '9s36?;fyNp'
+    owner: root
+    group: www-data
+    mode: 0640
+  notify:
+    - restart nginx

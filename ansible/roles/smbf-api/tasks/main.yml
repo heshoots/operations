@@ -34,7 +34,5 @@
     dest: /etc/nginx/sites-enabled/brackets.superminerbattle.farm
     owner: root
     group: root
-- name: restart nginx
-  service:
-    name: nginx
-    state: restarted
+  notify:
+    - restart nginx

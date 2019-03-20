@@ -1,0 +1,8 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name discord.superminerbattle.farm;
+    rewrite ^/(.*)$ https://discord.gg/ud6cAnU;
+}
+

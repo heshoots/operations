@@ -5,9 +5,28 @@
     name: nginx
     state: present
   tags: nginx
+- name: install certbot
+  become: yes
+  apt:
+    name: certbot
+    state: present
+  tags: nginx
+- name: install certbot
+  become: yes
+  apt:
+    name: python-certbot-nginx 
+    state: present
+  tags: nginx
 - name: ensure nginx running
   become: yes
   service:
     name: nginx
     state: started
     enabled: yes
+- name: add discord config file to nginx
+  become: yes
+  copy:
+    src: ../files/discord.superminerbattle.farm
+    dest: /etc/nginx/sites-enabled/discord.superminerbattle.farm
+    owner: root
+    group: root

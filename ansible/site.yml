@@ -1,2 +1,4 @@
 ---
+- import_playbook: digitalocean.yml
 - import_playbook: webservers.yml
+- import_playbook: choli.yml

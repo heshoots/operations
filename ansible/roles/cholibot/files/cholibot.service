@@ -1,0 +1,16 @@
+[Unit]
+Description=Cholibot {{ cholibot_environment }} service
+ConditionPathExists=/opt/cholibot-{{ cholibot_environment }}/bin/cholibot
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+startLimitIntervalSec=60
+WorkingDirectory=/opt/cholibot-{{ cholibot_environment }}/
+Environment=ENV={{ cholibot_environment }}
+ExecStart=/opt/cholibot-{{ cholibot_environment }}/bin/cholibot
+
+[Install]
+WantedBy=multi-user.target
