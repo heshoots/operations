@@ -1,0 +1,7 @@
+---
+- hosts: digital_ocean
+  remote_user: root
+  vars_files:
+  - roles/digitalocean/vars/vault.yaml
+  roles:
+  - digitalocean

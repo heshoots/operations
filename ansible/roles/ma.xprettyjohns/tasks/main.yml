@@ -9,12 +9,5 @@
     dest: /var/www/ma.xprettyjohns/html
     remote_src: yes
     extra_opts: [--strip-components=1]
-- name: add ma.xprettyjohns config file to nginx
-  become: yes
-  copy:
-    src: ../files/max.prettyjohns
-    dest: /etc/nginx/sites-enabled/max.prettyjohns
-    owner: root
-    group: root
   notify:
-    - restart nginx
+    - restart caddy

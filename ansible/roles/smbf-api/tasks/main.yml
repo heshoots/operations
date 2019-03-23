@@ -35,4 +35,4 @@
     owner: root
     group: root
   notify:
-    - restart nginx
+    - restart caddy

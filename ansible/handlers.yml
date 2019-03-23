@@ -1,7 +1,0 @@
----
-- name: restart ufw
-  service: name=ufw state=restarted
-- name: restart nginx
-  service: name=nginx state=restarted
-- name: restart smbfapi
-  service: name=smbfapi state=restarted

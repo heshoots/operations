@@ -1,0 +1,15 @@
+ma.xprettyjohns.com {
+  root /var/www/ma.xprettyjohns/html
+  rewrite {
+    regexp .*
+    to {path} /
+  }
+}
+
+brackets.superminerbattle.farm {
+  proxy / localhost:8080 
+}
+
+bot.fightinggame.community {
+  proxy / localhost:3000
+}

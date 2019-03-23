@@ -1,15 +1,4 @@
 ---
-#- hosts: tag_webserver
-#  remote_user: heshoots9999
-#  become: yes
-#  vars:
-#    cholibot_conf_directory: /opt/cholibot-staging/config
-#    cholibot_app_directory: /opt/cholibot-staging/bin
-#    cholibot_environment: staging
-#    cholibot_checksum: sha256:4838437ed2dd59dcbb3f15b8d8981ea8b5fc1d6f57079554a01c846ec4f12103
-#    cholibot_release: 0.0.4
-#  roles:
-#    - cholibot
 - hosts: tag_webserver
   remote_user: heshoots9999
   become: yes
@@ -17,7 +6,7 @@
     cholibot_conf_directory: /opt/cholibot-production/config
     cholibot_app_directory: /opt/cholibot-production/bin
     cholibot_environment: production
-    cholibot_checksum: sha256:4838437ed2dd59dcbb3f15b8d8981ea8b5fc1d6f57079554a01c846ec4f12103
-    cholibot_release: 0.0.4
+    cholibot_checksum: sha256:cef830537e8ec2a14832dae7d384cd703fffe416f23028a18c9f1404c2cefab4
+    cholibot_release: v0.0.5
   roles:
     - cholibot

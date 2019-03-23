@@ -1,0 +1,98 @@
+---
+- name: add www-data group
+  group:
+    gid: 33
+    name: www-data
+- name: add www-data user
+  user:
+    name: www-data
+    groups:
+    - www-data
+    home: /var/www
+    create_home: false
+    uid: 33
+    shell: /usr/sbin/nologin
+- name: caddy bin directory
+  file:
+    path: /opt/caddy
+    state: directory
+- name: caddy config directory
+  file:
+    path: /etc/caddy
+    state: directory
+    group: root
+    owner: root
+    recurse: yes
+- name: caddy config directory
+  file:
+    path: /etc/ssl/caddy
+    state: directory
+    group: www-data
+    owner: root
+    recurse: yes
+    mode: 0770
+- name: get caddy binary
+  unarchive:
+    src: "https://caddyserver.com/download/linux/amd64?license=personal&telemetry=on"
+    dest: /opt/caddy
+    remote_src: yes
+- name: move caddy to /usr/local/bin
+  copy:
+    src: /opt/caddy/caddy
+    dest: /usr/local/bin/caddy
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+- name: install cap progs
+  apt:
+    name: libcap2-bin
+    state: present
+- name: allow caddy to bind ports
+  capabilities:
+    path: /usr/local/bin/caddy
+    capability: cap_net_bind_service=+ep
+    state: present
+- name: move cadyfile to /etc/caddy/Caddyfile
+  copy:
+    src: ../files/Caddyfile
+    dest: /etc/caddy/Caddyfile
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart caddy
+- name: create home folder
+  file:
+    state: directory
+    path: /var/www
+    group: www-data
+    owner: www-data
+    mode: 0555
+- name: create discord folder
+  file:
+    state: directory
+    path: /var/www/discordredirect
+    group: www-data
+    owner: www-data
+    mode: 0555
+- name: add discord redirect
+  copy:
+    src: ../files/index.html
+    dest: /var/www/discordredirect/index.html
+    owner: www-data
+    group: www-data
+    mode: 0555
+- name: download service
+  get_url:
+    url: "https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service"
+    dest: /etc/systemd/system/caddy.service
+    mode: 644
+    owner: root
+    group: root
+- name: caddy.service started
+  service:
+    daemon_reload: yes
+    name: caddy
+    enabled: yes
+    state: started

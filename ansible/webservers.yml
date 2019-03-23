@@ -1,9 +1,13 @@
 ---
-- hosts: webserver
+- hosts: tag_webserver
   user: heshoots9999
   become: yes
   roles:
-    - webserver
     - ma.xprettyjohns
     - smbf-api
-    - ufw
+    - caddy
+  handlers:
+  - name: restart smbfapi
+    service: name=smbfapi state=restarted
+  - name: restart caddy
+    service: name=caddy state=restarted
