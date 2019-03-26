@@ -6,7 +6,7 @@
     cholibot_conf_directory: /opt/cholibot-production/config
     cholibot_app_directory: /opt/cholibot-production/bin
     cholibot_environment: production
-    cholibot_checksum: sha256:cef830537e8ec2a14832dae7d384cd703fffe416f23028a18c9f1404c2cefab4
-    cholibot_release: v0.0.5
+    cholibot_release: v0.0.7
+    cholibot_checksum: sha256:ef6104c343794a86bdefc4b1e502115400d613589eac1521870583c39d5226d3
   roles:
     - cholibot
