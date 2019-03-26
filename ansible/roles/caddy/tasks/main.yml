@@ -69,20 +69,6 @@
     group: www-data
     owner: www-data
     mode: 0555
-- name: create discord folder
-  file:
-    state: directory
-    path: /var/www/discordredirect
-    group: www-data
-    owner: www-data
-    mode: 0555
-- name: add discord redirect
-  copy:
-    src: ../files/index.html
-    dest: /var/www/discordredirect/index.html
-    owner: www-data
-    group: www-data
-    mode: 0555
 - name: download service
   get_url:
     url: "https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service"

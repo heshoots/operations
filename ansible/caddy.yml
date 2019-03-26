@@ -1,6 +1,0 @@
----
-- hosts: webserver
-  user: heshoots9999
-  become: yes
-  roles:
-    - caddy
