@@ -13,7 +13,7 @@
     state: directory
 - name: pull cholibot binary
   get_url:
-    url: "https://github.com/heshoots/cholibot/releases/download/{{ cholibot_release }}/cholibot"
+    url: "https://github.com/quorauk/cholibot/releases/download/{{ cholibot_release }}/cholibot"
     dest: "{{ cholibot_app_directory }}/cholibot"
     mode: 775
     checksum: "{{ cholibot_checksum }}"

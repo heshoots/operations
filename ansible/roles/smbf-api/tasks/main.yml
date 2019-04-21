@@ -9,7 +9,7 @@
     state: directory
 - name: pull smbfapi binary
   get_url:
-    url: "https://github.com/heshoots/smbfapi/releases/download/{{ smbf_api_release }}/smbfapi"
+    url: "https://github.com/quorauk/smbfapi/releases/download/{{ smbf_api_release }}/smbfapi"
     dest: /opt/smbf-api/bin/smbfapi
     mode: 775
 - name: move systemd unit
