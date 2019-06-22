@@ -1,9 +1,5 @@
 ma.xprettyjohns.com {
   root /var/www/ma.xprettyjohns/html
-  rewrite {
-    regexp .*
-    to {path} /
-  }
 }
 
 brackets.superminerbattle.farm {

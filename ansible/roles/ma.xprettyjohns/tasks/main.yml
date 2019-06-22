@@ -5,7 +5,7 @@
     state: directory
 - name: download release
   unarchive:
-    src: "https://github.com/quorauk/site/releases/download/{{ maxprettyjohns_release }}/maxprettyjohns.tar.gz"
+    src: "https://github.com/quorauk/ma.xprettyjohns.com/releases/download/{{ maxprettyjohns_release }}/ma.xprettyjohns.com.tgz"
     dest: /var/www/ma.xprettyjohns/html
     remote_src: yes
     extra_opts: [--strip-components=1]
