@@ -2,6 +2,11 @@ ma.xprettyjohns.com {
   root /var/www/ma.xprettyjohns/html
 }
 
+superminerbattle.farm {
+  root /var/www/superminerbattle.farm/html
+}
+
+
 brackets.superminerbattle.farm {
   header / {
     Access-Control-Allow-Origin  *
