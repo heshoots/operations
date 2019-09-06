@@ -1,11 +1,10 @@
-ma.xprettyjohns.com {
-  root /var/www/ma.xprettyjohns/html
+stream.superminerbattle.farm {
+  proxy / {
+    websocket
+    transparent
+    upstream localhost:4000
+  }
 }
-
-superminerbattle.farm {
-  root /var/www/superminerbattle.farm/html
-}
-
 
 brackets.superminerbattle.farm {
   header / {
@@ -14,8 +13,4 @@ brackets.superminerbattle.farm {
     Access-Control-Allow-Headers "Authorization, Origin, X-Requested-With, Content-Type, Accept"
   }
   proxy / localhost:8080 
-}
-
-bot.fightinggame.community {
-  proxy / localhost:3000
 }

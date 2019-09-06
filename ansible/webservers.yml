@@ -3,8 +3,8 @@
   user: heshoots9999
   become: yes
   roles:
-    - ma.xprettyjohns
-    - superminerbattle.farm
+    # - ma.xprettyjohns
+    # - superminerbattle.farm
     - smbf-api
     - caddy
   handlers:
